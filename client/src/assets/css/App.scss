@@ -1,0 +1,9 @@
+.nav-item {
+  a {
+    padding: 0px 10px;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+}
