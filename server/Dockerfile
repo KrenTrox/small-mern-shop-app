@@ -8,5 +8,8 @@ RUN npm install -qyg nodemon@2.0.15
 RUN npm install -qy
 # Copy app to container
 COPY . .
+
+EXPOSE 5000
+
 # Run the "start" script in package.json
 CMD ["npm", "start"]

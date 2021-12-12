@@ -10,19 +10,23 @@ function Stats() {
 	const [loading, setLoading] = useState(true);
 
 	const getTopFiveProductsBySold = useCallback(async () => {
-		const { data } = await axios.get('/stats/top-five-products-by-sold');
+		const { data } = await axios.get(
+			'http://localhost:5000/stats/top-five-products-by-sold',
+		);
 		setTopFiveProductsBySold(data);
 	}, []);
 
 	const getTopFiveProductsByUniqueSold = useCallback(async () => {
 		const { data } = await axios.get(
-			'/stats/top-five-products-by-unique-sold',
+			'http://localhost:5000/stats/top-five-products-by-unique-sold',
 		);
 		setTopFiveProductsByUniqueSold(data);
 	}, []);
 
 	const getOrdersByFiveDays = useCallback(async () => {
-		const { data } = await axios.get('/stats/five-days-orders');
+		const { data } = await axios.get(
+			'http://localhost:5000/stats/five-days-orders',
+		);
 		setOrdersByFiveDays(data);
 	}, []);
 

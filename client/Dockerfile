@@ -1,11 +1,19 @@
-# Pull Docker Hub base image
-FROM node:14.16.0-alpine3.10
-# Set working directory
+# Dockerfile for client
+
+# Stage 1: Build react client
+FROM node:14.15.3-alpine3.12
+
+# Working directory be app
 WORKDIR /usr/app
-# Install app dependencies
+
 COPY package*.json ./
-RUN npm install -qy
-# Copy app to container
+
+# Install dependencies
+RUN npm install
+
+# copy local files to app folder
 COPY . .
-# Run the "start" script in package.json
-CMD ["npm", "start"]
+
+EXPOSE 3000
+
+CMD ["npm","start"]

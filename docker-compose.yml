@@ -1,6 +1,15 @@
 version: "3"
 services:
 
+  db:
+    image: mongo:3.6.19-xenial
+    ports:
+      - 27017:27017
+    networks:
+      - mern-network
+    volumes:
+      - mongo-data:/data/db
+
   client:
     build: 
       context: ./client
@@ -30,23 +39,14 @@ services:
     networks:
       - mern-network
     volumes:
-      - ./server:/usr/app/src
+      - ./server:/usr/app/
     depends_on:
       - db
     environment:
-      - MONGO_URL=mongodb://db:27017
+      - MONGO_URL=mongodb+srv://test:test@cluster0.l0r7v.mongodb.net/shop?retryWrites=true&w=majority
       - CLIENT=http://localhost:3000
     command: /usr/app/node_modules/.bin/nodemon -L index.js
-
-  db:
-    image: mongo:3.6.19-xenial
-    ports:
-      - 27017:27017
-    networks:
-      - mern-network
-    volumes:
-      - mongo-data:/data/db
-
+  
 networks:
   mern-network:
     driver: bridge
